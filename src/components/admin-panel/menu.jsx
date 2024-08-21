@@ -66,12 +66,7 @@ export function Menu({ isOpen, location }) {
               </TooltipProvider>
             </div>
           </li>
-          {/* Wrap Details component in a list item */}
-          {location && (
-            <li className="w-full pt-5">
-              <Details location={location} />
-            </li>
-          )}
+          <Details location={location} />
         </ul>
       </nav>
     </ScrollArea>
