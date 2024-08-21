@@ -42,9 +42,9 @@ A stunning and functional retractable sidebar for Next.js built on top of [shadc
 
 ## Demo
 
-The app is hosted on Vercel. [Click here](https://shadcn-ui-sidebar.salimi.my) to visit.
+The app is hosted on Vercel. [Click here](https://airglobe-six.vercel.app/) to visit.
 <br>
-Direct demo link: `https://shadcn-ui-sidebar.salimi.my`
+Direct demo link: `(https://airglobe-six.vercel.app/)`
 
 ## Screenshots
 
