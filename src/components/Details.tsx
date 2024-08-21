@@ -6,7 +6,10 @@ import { CloudRain } from 'lucide-react';
 
 const apiKey = 'ea66840a6ce817001bfd3af7f9342559';
 
-const weatherIcons = {
+// Define a type for the possible weather conditions
+type WeatherCondition = 'Clear' | 'Clouds' | 'Rain' | 'Drizzle' | 'Snow' | 'Wind';
+
+const weatherIcons: { [key in WeatherCondition]: React.ReactElement } = {
   Clear: <FaSun size={20} />,
   Clouds: <FaCloud size={20} />,
   Rain: <CloudRain size={20} />,
@@ -50,7 +53,8 @@ const Details: React.FC = () => {
   };
 
   const renderWeatherIcon = (condition: string) => {
-    const icon = weatherIcons[condition];
+    // Cast `condition` to `WeatherCondition`
+    const icon = weatherIcons[condition as WeatherCondition];
     return icon || <FaCloud size={20} />; // Default to a generic cloud icon
   };
 
