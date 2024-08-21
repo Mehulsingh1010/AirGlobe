@@ -6,7 +6,7 @@ import IndiaMap from "../IndiaMap";
 
 export default function PlaceholderContent() {
   return (
-    <Card className="  rounded-lg border-none mt-6 overflow-hidden">
+    <Card className="  rounded-lg border-none mt-[8px] overflow-hidden">
       <CardContent className="p-6 relative h-[80vh]"> 
         <div className="absolute inset-0">
           <IndiaMap />

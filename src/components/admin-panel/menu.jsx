@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import SocialLinks from "@/components/SocialLinks"; // Import the SocialLinks component
+
 import {
   Tooltip,
   TooltipTrigger,
@@ -19,7 +21,7 @@ export function Menu({ isOpen, location }) {
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
-      <nav className="mt-8 h-full w-full">
+      <nav className="mt-8 pt-4 h-full w-full">
         <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
           <li className="w-full pt-5">
             <div className="w-full">
@@ -34,9 +36,9 @@ export function Menu({ isOpen, location }) {
     ${
       pathname === "/dashboard"
         ? ""
-        : "bg-[#F9FAFB] bg-opacity-70 backdrop-blur-md border border-gray-300"
+        : "bg-[#F9FAFB] bg-opacity-70 backdrop-blur-md border  border-gray-300"
     } 
-    text-gray-800 dark:bg-[#1F2937] dark:text-white`}
+      dark:bg-[#1F2937]  text-white`}
                       asChild
                     >
                       <Link
@@ -67,6 +69,7 @@ export function Menu({ isOpen, location }) {
             </div>
           </li>
           <Details location={location} />
+          <SocialLinks />
         </ul>
       </nav>
     </ScrollArea>
