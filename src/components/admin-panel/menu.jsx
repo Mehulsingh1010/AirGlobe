@@ -14,12 +14,7 @@ import {
 } from "@/components/ui/tooltip";
 import Details from "@/components/Details";
 
-interface MenuProps {
-  isOpen: boolean | undefined;
-  location: { lat: number; lon: number } | null;
-}
-
-export function Menu({ isOpen, location }: MenuProps) {
+export function Menu({ isOpen, location }) {
   const pathname = usePathname();
 
   return (
@@ -70,8 +65,13 @@ export function Menu({ isOpen, location }: MenuProps) {
                 </Tooltip>
               </TooltipProvider>
             </div>
-         
-          </li>   <Details location={location} />
+          </li>
+          {/* Wrap Details component in a list item */}
+          {location && (
+            <li className="w-full pt-5">
+              <Details location={location} />
+            </li>
+          )}
         </ul>
       </nav>
     </ScrollArea>
