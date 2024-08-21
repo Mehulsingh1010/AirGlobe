@@ -38,7 +38,7 @@ export function Menu({ isOpen, location }) {
         ? ""
         : "bg-[#F9FAFB] bg-opacity-70 backdrop-blur-md border  border-gray-300"
     } 
-      dark:bg-[#1F2937]  text-white`}
+      dark:bg-[#1F2937] `}
                       asChild
                     >
                       <Link
