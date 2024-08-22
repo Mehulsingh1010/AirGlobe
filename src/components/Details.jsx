@@ -4,12 +4,11 @@ import { useLocation } from './LocationContext'; // Adjust the path as needed
 import { FaSun, FaCloudRain, FaCloud, FaCloudShowersHeavy, FaSnowflake, FaWind } from 'react-icons/fa';
 import { CloudRain } from 'lucide-react';
 
+// Define the API key
 const apiKey = 'ea66840a6ce817001bfd3af7f9342559';
 
-// Define a type for the possible weather conditions
-type WeatherCondition = 'Clear' | 'Clouds' | 'Rain' | 'Drizzle' | 'Snow' | 'Wind';
-
-const weatherIcons: { [key in WeatherCondition]: React.ReactElement } = {
+// Map weather conditions to icons
+const weatherIcons = {
   Clear: <FaSun size={20} />,
   Clouds: <FaCloud size={20} />,
   Rain: <CloudRain size={20} />,
@@ -18,11 +17,11 @@ const weatherIcons: { [key in WeatherCondition]: React.ReactElement } = {
   Wind: <FaWind size={20} />
 };
 
-const Details: React.FC = () => {
+const Details = () => {
   const { location } = useLocation();
-  const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (location) {
@@ -32,7 +31,7 @@ const Details: React.FC = () => {
     }
   }, [location]);
 
-  const fetchDetails = async (lat: number, lon: number) => {
+  const fetchDetails = async (lat, lon) => {
     setLoading(true);
     setError(null);
     try {
@@ -52,9 +51,8 @@ const Details: React.FC = () => {
     }
   };
 
-  const renderWeatherIcon = (condition: string) => {
-    // Cast `condition` to `WeatherCondition`
-    const icon = weatherIcons[condition as WeatherCondition];
+  const renderWeatherIcon = (condition) => {
+    const icon = weatherIcons[condition];
     return icon || <FaCloud size={20} />; // Default to a generic cloud icon
   };
 
