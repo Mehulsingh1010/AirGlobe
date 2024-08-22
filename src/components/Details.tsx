@@ -4,7 +4,7 @@ import { useLocation } from './LocationContext'; // Adjust the path as needed
 import { FaSun, FaCloudRain, FaCloud, FaCloudShowersHeavy, FaSnowflake, FaWind } from 'react-icons/fa';
 import { CloudRain } from 'lucide-react';
 
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const apiKey ='ea66840a6ce817001bfd3af7f9342559'
 const apiEndpoint = 'https://api.openweathermap.org/data/2.5/weather'; 
 
 interface WeatherData {

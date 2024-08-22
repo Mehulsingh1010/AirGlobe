@@ -4,7 +4,7 @@ import { Menu } from './admin-panel/menu';
 
 const ParentComponent = () => {
   const [clickedLocation, setClickedLocation] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(true); // You can control this based on your logic
+  const [isMenuOpen, setIsMenuOpen] = useState(true); // Control this based on your logic
 
   const handleLocationClick = (location) => {
     setClickedLocation(location);
