@@ -39,9 +39,9 @@ export default function HomePage() {
           </nav>
         </div>
       </header>
-      <main className="min-h-[calc(100vh-57px-97px)] overflow-hidden flex-1">
+      <main className="flex-1 overflow-hidden">
         <div className="container relative mt-[70px] pb-10">
-          <section className="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-6 mt-10 sm:mt-[100px]">
+          <section className="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 lg:py-24 lg:pb-6 mt-10 sm:mt-[100px]">
             <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
               AirGlobe: Your World, Mapped and Updated
             </h1>
