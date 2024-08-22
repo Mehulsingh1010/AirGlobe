@@ -1,15 +1,13 @@
-# [shadcn/ui sidebar](https://shadcn-ui-sidebar.salimi.my) &middot; [![Author Salimi](https://img.shields.io/badge/Author-Salimi-%3C%3E)](https://www.salimi.my)
+# [AriGlobe : Your personal weather and climate assistant ](https://shadcn-ui-sidebar.salimi.my) &middot; [![Author Salimi](https://img.shields.io/badge/Author-Salimi-%3C%3E)](https://www.salimi.my)
 
-A stunning and functional retractable sidebar for Next.js built on top of [shadcn/ui](https://ui.shadcn.com) complete with desktop and mobile responsiveness.
 
 ## Features
 
-- Retractable mini and wide sidebar
-- Scrollable sidebar menu
-- Sheet menu for mobile
-- Grouped menu with labels
-- Collapsible submenu
-- Extracted menu items list
+-Provides a global map to select places from
+-clickable anywhere ! climate info everywhere !
+-responsive for any device 
+-solves real world problems !
+-minimilastic design powerful features
 
 ## Tech/framework used
 
@@ -18,19 +16,20 @@ A stunning and functional retractable sidebar for Next.js built on top of [shadc
 - Tailwind CSS
 - TypeScript
 - Zustand
+- leaflet.js
 
 ## Starting the project locally
 
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/salimi-my/shadcn-ui-sidebar
+   git clone https://github.com/salimi-my/AirGlobe
    ```
 
 2. Install dependencies
 
    ```bash
-   cd shadcn-ui-sidebar
+   cd AirGlobe
    npm install
    ```
 
