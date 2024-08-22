@@ -1,4 +1,4 @@
-# [AriGlobe : Your personal weather and climate assistant ](https://shadcn-ui-sidebar.salimi.my) &middot; [![Author Salimi](https://img.shields.io/badge/Author-Salimi-%3C%3E)](https://www.salimi.my)
+# [AriGlobe : Your personal weather and climate assistant ] &middot; 
 
 
 ## Features
@@ -23,7 +23,7 @@
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/salimi-my/AirGlobe
+   git clone https://github.com/mehulsingh1010/AirGlobe
    ```
 
 2. Install dependencies
