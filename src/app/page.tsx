@@ -11,7 +11,7 @@ import screenshot2 from "../../screenshots/screenshot-2.png";
 import screenshot3 from "../../screenshots/screenshot-3.png";
 import screenshot4 from "../../screenshots/screenshot-4.png";
 
-const HomePage: React.FC = () => {
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="z-[50] sticky top-0 w-full bg-background/95 border-b backdrop-blur-sm dark:bg-black/[0.6] border-border/40">
@@ -40,10 +40,10 @@ const HomePage: React.FC = () => {
         </div>
       </header>
       <main className="min-h-[calc(100vh-57px-97px)] flex-1">
-        <div className="container relative pb-10">
-          <section className="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-6">
+        <div className="container relative mt-[70px] pb-10">
+          <section className="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-6 mt-10 sm:mt-[100px]">
             <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
-              AirGlobe : Your World, Mapped and Updated
+              AirGlobe: Your World, Mapped and Updated
             </h1>
             <span className="max-w-[750px] text-center text-lg font-light text-foreground">
               Explore interactive global maps and get real-time weather updates.
@@ -104,6 +104,4 @@ const HomePage: React.FC = () => {
       </main>
     </div>
   );
-};
-
-export default HomePage;
+}
