@@ -11,6 +11,9 @@ import Details from "@/components/Details"; // Import Details component
 export function Sidebar() {
   const sidebar = useStore(useSidebarToggle, (state) => state);
   
+  // Define a default or null location
+  const defaultLocation = null;
+
   if (!sidebar) return null;
 
   return (
@@ -45,8 +48,8 @@ export function Sidebar() {
           </Link>
         </Button>
 
-        {/* Render Menu items */}
-        <Menu isOpen={sidebar?.isOpen} />
+        {/* Render Menu items with the isOpen and location props */}
+        <Menu isOpen={sidebar?.isOpen} location={defaultLocation} />
 
         {/* Details component fixed below GlobeCenter and before Settings */}
       
