@@ -11,7 +11,7 @@ import screenshot2 from "../../screenshots/screenshot-2.png";
 import screenshot3 from "../../screenshots/screenshot-3.png";
 import screenshot4 from "../../screenshots/screenshot-4.png";
 
-export default function HomePage() {
+const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="z-[50] sticky top-0 w-full bg-background/95 border-b backdrop-blur-sm dark:bg-black/[0.6] border-border/40">
@@ -104,4 +104,6 @@ export default function HomePage() {
       </main>
     </div>
   );
-}
+};
+
+export default HomePage;

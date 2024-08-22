@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.jsx", ".next/types/**/*.ts", "src/components/IndiaMap.jsx", "src/components/admin-panel/menu.jsx", "src/components/Details.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.jsx", ".next/types/**/*.ts", "src/components/IndiaMap.jsx", "src/components/admin-panel/menu.jsx", "src/components/Details.tsx", "src/app/page.tsx"],
   "exclude": ["node_modules"]
 }
