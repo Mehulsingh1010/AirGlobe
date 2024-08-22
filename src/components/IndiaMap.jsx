@@ -2,8 +2,8 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet'; // Import L for custom icons
-import { useLocation } from './LocationContext'; // Adjust the path as needed
+import L from 'leaflet'; 
+import { useLocation } from './LocationContext'; 
 
 const center = [20.5937, 78.9629];
 const zoom = 6;
@@ -34,10 +34,14 @@ const IndiaMap = () => {
 
   return (
     <div className="relative h-full w-full">
+      {/* Text for mobile view */}
+      <div className="block md:hidden text-green-300 text-center text-lg font-semibold my-2">
+        Select a location and then open sidebar for more info! 
+      </div>
       <MapContainer
         center={center}
         zoom={zoom}
-        style={{ height: '100%', width: '100%', zIndex: 1 }} // Ensure the map has a lower z-index
+        style={{ height: '100%', width: '100%', zIndex: 1 }} 
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -46,13 +50,13 @@ const IndiaMap = () => {
         <MapClickHandler />
         {location && (
           <Marker position={[location.lat, location.lon]} icon={customIcon}>
-            <Popup>
+            <Popup autoClose={false} closeOnClick={false}>
               <p>Coordinates: {location.lat}, {location.lon}</p>
             </Popup>
           </Marker>
         )}
       </MapContainer>
-      {/* Overlay text for mobile view */}
+ 
       <div className="absolute inset-0 flex items-center justify-center text-center text-white bg-gray-800 bg-opacity-70 rounded-lg md:hidden">
         <p className="text-lg font-semibold">Open sidebar to view details and pick a point first</p>
       </div>
