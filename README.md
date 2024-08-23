@@ -1,4 +1,4 @@
-# [AriGlobe : Your personal weather and climate assistant ] &middot; 
+# [AriGlobe : Your personal weather and climate assistant ] 
 
 
 ## Features
@@ -41,9 +41,9 @@
 
 ## Demo
 
-The app is hosted on Vercel. [Click here](https://airglobe-six.vercel.app/) to visit.
+The app is hosted on Vercel. [Click here](https://air-globe.vercel.app/) to visit.
 <br>
-Direct demo link: `(https://airglobe-six.vercel.app/)`
+Direct demo link: `(https://air-globe.vercel.app/)`
 
 ## Screenshots
 
