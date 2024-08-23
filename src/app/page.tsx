@@ -1,6 +1,5 @@
 "use client"
 // pages/index.tsx
-// pages/index.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -23,6 +22,8 @@ export default function HomePage() {
   const [emailList, setEmailList] = useState<{ city: string, email: string }[]>([]);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [cityError, setCityError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,37 +43,50 @@ export default function HomePage() {
   }, [emailList]);
 
   const handleSubscribe = async () => {
+    setCityError('');
+    setEmailError('');
+
     if (city && email) {
       setLoading(true);
       setSubscribed(false);
 
+      // Validate city
       const weather = await fetchWeather(city);
 
-      if (weather) {
-        // Send confirmation email
-        await sendEmail(email, 'Thanks for subscribing!', {
-          user_name: 'Subscriber',
-          city_name: weather.city,
-          country: weather.country,
-          temperature: weather.temperature,
-          weather_condition: weather.weather_condition,
-          humidity: weather.humidity,
-          pressure: weather.pressure,
-          wind_speed: weather.wind_speed,
-        });
-
-        // Add subscription to the list
-        setEmailList([...emailList, { city, email }]);
-        setCity('');
-        setEmail('');
-        setSubscribed(true);
+      if (!weather) {
+        setCityError('City not found. Please enter a valid city.');
         setLoading(false);
-
-        // Automatically close modal after 2 seconds
-        setTimeout(() => setShowModal(false), 2000);
-      } else {
-        setLoading(false);
+        return;
       }
+
+      // Validate email
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setEmailError('Invalid email address. Please enter a valid email.');
+        setLoading(false);
+        return;
+      }
+
+      // Send confirmation email
+      await sendEmail(email, 'Thanks for subscribing!', {
+        user_name: 'Subscriber',
+        city_name: weather.city,
+        country: weather.country,
+        temperature: weather.temperature,
+        weather_condition: weather.weather_condition,
+        humidity: weather.humidity,
+        pressure: weather.pressure,
+        wind_speed: weather.wind_speed,
+      });
+
+      // Add subscription to the list
+      setEmailList([...emailList, { city, email }]);
+      setCity('');
+      setEmail('');
+      setSubscribed(true);
+      setLoading(false);
+
+      // Automatically close modal after 2 seconds
+      setTimeout(() => setShowModal(false), 2000);
     } else {
       alert('Please enter both city and email.');
     }
@@ -217,39 +231,35 @@ export default function HomePage() {
               &times;
             </button>
             <h2 className="text-xl font-bold mb-4">Subscribe for Updates</h2>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubscribe();
-              }}
-            >
-              <label className="block mb-2">
-                City:
-                <input
-                  type="text"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="block w-full p-2 mt-1 border rounded"
-                  placeholder="Enter city"
-                />
-              </label>
-              <label className="block mb-4">
-                Email:
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full p-2 mt-1 border rounded"
-                  placeholder="Enter your email"
-                />
-              </label>
-              <Button type="submit" variant="default" disabled={loading}>
+            <div className="flex flex-col gap-4">
+              <input
+                type="text"
+                placeholder="Enter city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="border border-gray-300 rounded p-2"
+              />
+              {cityError && <p className="text-red-500">{cityError}</p>}
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="border border-gray-300 rounded p-2"
+              />
+              {emailError && <p className="text-red-500">{emailError}</p>}
+              <Button
+                variant="default"
+                onClick={handleSubscribe}
+                disabled={loading}
+                className="mt-2"
+              >
                 {loading ? 'Subscribing...' : 'Subscribe'}
               </Button>
-            </form>
-            {subscribed && (
-              <p className="mt-4 text-green-600">Subscription successful!</p>
-            )}
+              {subscribed && (
+                <p className="text-green-500 mt-2">Subscription successful!</p>
+              )}
+            </div>
           </div>
         </div>
       )}
