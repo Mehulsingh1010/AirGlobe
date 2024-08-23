@@ -1,5 +1,7 @@
-"use client"; // pages/index.tsx
-import React, { useState, useEffect } from 'react';
+"use client"
+// pages/index.tsx
+// pages/index.tsx
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Earth } from 'lucide-react';
@@ -19,8 +21,9 @@ export default function HomePage() {
   const [email, setEmail] = useState('');
   const [citySuggestions, setCitySuggestions] = useState<string[]>([]);
   const [emailList, setEmailList] = useState<{ city: string, email: string }[]>([]);
-  const [loading, setLoading] = useState(false); // Loading state
-  const [subscribed, setSubscribed] = useState(false); // Subscription success state
+  const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Load saved subscriptions from local storage
@@ -40,8 +43,8 @@ export default function HomePage() {
 
   const handleSubscribe = async () => {
     if (city && email) {
-      setLoading(true); // Set loading state to true
-      setSubscribed(false); // Reset subscribed state
+      setLoading(true);
+      setSubscribed(false);
 
       const weather = await fetchWeather(city);
 
@@ -62,18 +65,30 @@ export default function HomePage() {
         setEmailList([...emailList, { city, email }]);
         setCity('');
         setEmail('');
-        setSubscribed(true); // Set subscribed state to true
-        setLoading(false); // Set loading state to false
+        setSubscribed(true);
+        setLoading(false);
 
         // Automatically close modal after 2 seconds
         setTimeout(() => setShowModal(false), 2000);
       } else {
-        setLoading(false); // Set loading state to false
+        setLoading(false);
       }
     } else {
       alert('Please enter both city and email.');
     }
   };
+
+  useEffect(() => {
+    // Close modal when clicking outside of it
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setShowModal(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Mock email sending every hour
   useEffect(() => {
@@ -190,7 +205,17 @@ export default function HomePage() {
       {/* Modal for subscription */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-          <div className="bg-white dark:bg-black rounded-lg p-6 max-w-sm mx-auto shadow-lg">
+          <div
+            ref={modalRef}
+            className="bg-white dark:bg-black rounded-lg p-6 max-w-sm mx-auto shadow-lg relative"
+          >
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300"
+              aria-label="Close"
+            >
+              &times;
+            </button>
             <h2 className="text-xl font-bold mb-4">Subscribe for Updates</h2>
             <form
               onSubmit={(e) => {
@@ -218,45 +243,13 @@ export default function HomePage() {
                   placeholder="Enter your email"
                 />
               </label>
-              <button
-                type="submit"
-                className={`w-full p-2 rounded text-white flex items-center justify-center ${loading ? 'bg-gray-500' : 'bg-blue-500'}`}
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <span className="mr-2">Sending...</span>
-                    <svg
-                      className="animate-spin h-5 w-5 text-white"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeDasharray="31.4159 31.4159"
-                        strokeDashoffset="0"
-                      />
-                    </svg>
-                  </>
-                ) : subscribed ? (
-                  <span>Sent!</span>
-                ) : (
-                  <span>Subscribe</span>
-                )}
-              </button>
+              <Button type="submit" variant="default" disabled={loading}>
+                {loading ? 'Subscribing...' : 'Subscribe'}
+              </Button>
             </form>
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-            >
-              &times;
-            </button>
+            {subscribed && (
+              <p className="mt-4 text-green-600">Subscription successful!</p>
+            )}
           </div>
         </div>
       )}
