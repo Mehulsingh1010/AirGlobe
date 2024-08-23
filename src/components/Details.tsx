@@ -6,7 +6,7 @@ import { CloudRain } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from './LocationContext'; // Adjust the path as needed
 
-const apiKey = 'ea66840a6ce817001bfd3af7f9342559';
+const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 const apiEndpoint = 'https://api.openweathermap.org/data/2.5/weather';
 
 interface WeatherData {
