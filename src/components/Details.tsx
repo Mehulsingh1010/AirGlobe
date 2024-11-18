@@ -73,9 +73,9 @@ const Details: React.FC = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        setLocation({ lat: latitude, lon: longitude });
+        setLocation({ lat: latitude, lon: longitude });  // Sets location in context
         setSelectedPosition([latitude, longitude]);
-        setShowFindMyLocation(true); 
+        setShowFindMyLocation(true);
         fetchDetails(latitude, longitude);
       }, (err) => {
         setError("Failed to retrieve location.");
@@ -84,6 +84,8 @@ const Details: React.FC = () => {
       setError("Geolocation is not supported by your browser.");
     }
   };
+
+  
 
   const renderWeatherIcon = (condition: string) => {
     return weatherIcons[condition] || <FaCloud size={24} />;
