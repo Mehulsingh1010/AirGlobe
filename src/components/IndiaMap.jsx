@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "re
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useLocation } from "./LocationContext";
+import Chatbot from "./Chatbot";
 
 const center = [20.5937, 78.9629];
 const initialZoom = 6;
@@ -74,6 +75,10 @@ const IndiaMap = () => {
       <div className="absolute inset-0 flex items-center justify-center text-center text-white bg-gray-800 bg-opacity-70 rounded-lg md:hidden">
         <p className="text-lg font-semibold">Open sidebar to view details and pick a point first</p>
       </div>
+
+      <div className="absolute bottom-[100px]">      <Chatbot />
+      </div>
+
     </div>
   );
 };

@@ -13,6 +13,7 @@ import screenshot3 from '../../screenshots/screenshot-3.png';
 import screenshot4 from '../../screenshots/screenshot-4.png';
 import { fetchWeather, fetchCities } from '@/utils/api';
 import { sendEmail } from '@/utils/emailService';
+import Chatbot from '@/components/Chatbot';
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
@@ -263,6 +264,12 @@ export default function HomePage() {
           </div>
         </div>
       )}
+<div className='absolute text-purple-600 right-6 bottom-[100px]  ' >
+  <Chatbot />
+</div>
+      {/* Chatbot component */}
+     
     </div>
   );
 }
+

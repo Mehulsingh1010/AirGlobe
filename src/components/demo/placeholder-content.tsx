@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
 import IndiaMap from "../IndiaMap";
+import Chatbot from "../Chatbot";
 
 export default function PlaceholderContent() {
   return (
@@ -12,6 +13,7 @@ export default function PlaceholderContent() {
           <IndiaMap />
         </div>
       </CardContent>
+      
     </Card>
   );
 }
