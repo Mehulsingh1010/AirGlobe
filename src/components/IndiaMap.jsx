@@ -76,7 +76,7 @@ const IndiaMap = () => {
         <p className="text-lg font-semibold">Open sidebar to view details and pick a point first</p>
       </div>
 
-      <div className="absolute bottom-[100px]">      <Chatbot />
+      <div className="absolute bottom-[100px] text-purple-600">      <Chatbot />
       </div>
 
     </div>
