@@ -18,38 +18,11 @@ const customScrollbarStyles = `
   }
 `;
 
-const CHAT_HISTORY_KEY = 'airglobe_chat_history';
-const CHAT_HISTORY_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-
-const saveChatHistory = (history) => {
-  const item = {
-    value: history,
-    timestamp: new Date().getTime()
-  };
-  localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(item));
-};
-
-const loadChatHistory = () => {
-  const item = localStorage.getItem(CHAT_HISTORY_KEY);
-  if (!item) return null;
-
-  const { value, timestamp } = JSON.parse(item);
-  const now = new Date().getTime();
-
-  if (now - timestamp > CHAT_HISTORY_EXPIRY) {
-    localStorage.removeItem(CHAT_HISTORY_KEY);
-    return null;
-  }
-
-  return value;
-};
-
 export default function Chatbot() {
   const [userInput, setUserInput] = useState('');
-  const [chatHistory, setChatHistory] = useState(() => {
-    const savedHistory = loadChatHistory();
-    return savedHistory || [{ role: 'system', text: 'Welcome to AirGlobe! How can I help you today?' }];
-  });
+  const [chatHistory, setChatHistory] = useState([
+    { role: 'system', text: 'Welcome to AirGlobe! How can I help you today?' },
+  ]);
   const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -77,10 +50,6 @@ export default function Chatbot() {
     };
   }, []);
 
-  useEffect(() => {
-    saveChatHistory(chatHistory);
-  }, [chatHistory]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -98,7 +67,11 @@ export default function Chatbot() {
     }
 
     setLoading(true);
-    setChatHistory(prev => [...prev, { role: 'user', text: userInput }]);
+    setChatHistory(prev => {
+      const newHistory = [...prev, { role: 'user', text: userInput }];
+      // Keep only the last 4 messages
+      return newHistory.slice(-4);
+    });
     setUserInput('');
 
     try {
@@ -111,7 +84,11 @@ export default function Chatbot() {
       if (!response.ok) throw new Error('Failed to fetch response');
 
       const data = await response.json();
-      setChatHistory(prev => [...prev, { role: 'bot', text: data.response }]);
+      setChatHistory(prev => {
+        const newHistory = [...prev, { role: 'bot', text: data.response }];
+        // Keep only the last 4 messages
+        return newHistory.slice(-4);
+      });
       setErrorMessage('');
     } catch (error) {
       setErrorMessage('Failed to get response. Please try again.');
