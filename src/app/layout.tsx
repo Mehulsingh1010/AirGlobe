@@ -22,16 +22,26 @@ export const metadata: Metadata = {
     url: '/',
     title: 'AirGlobe: Your World, Mapped and Updated',
     description:
-    'Explore interactive global maps and get real-time weather updates. Your ultimate resource for geographic insights and weather information worldwide',
-    type: 'website'
+      'Explore interactive global maps and get real-time weather updates. Your ultimate resource for geographic insights and weather information worldwide',
+    type: 'website',
+    images: [
+      {
+        url: '/logo.png', 
+        width: 1200,
+        height: 630,
+        alt: 'AirGlobe: Interactive global maps and real-time weather updates'
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AirGlobe: Your World, Mapped and Updated',
     description:
-    'Explore interactive global maps and get real-time weather updates. Your ultimate resource for geographic insights and weather information worldwide',
+      'Explore interactive global maps and get real-time weather updates. Your ultimate resource for geographic insights and weather information worldwide',
+    images: ['/logo.png'] 
   }
 };
+
 
 export default function RootLayout({
   children
@@ -39,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // overflow-hidden in html div
+  
     <html className='' lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
