@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import axios from 'axios';
 
-const MODEL_NAME = "gemini-pro";
+const MODEL_NAME = "gemini-2.0-flash";
 const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather';
